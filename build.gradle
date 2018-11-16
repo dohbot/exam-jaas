@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+    dependencies {
+        classpath 'net.ltgt.gradle:gradle-apt-plugin:0.19'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'net.ltgt.apt'
+
+sourceCompatibility = 10
+targetCompatibility = 10
+
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
+
+group 'dohbot.exam'
+version '0.1.0'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+
+    //for default
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    compile 'org.slf4j:slf4j-simple:1.7.25'
+
+    //for test
+    testCompileOnly 'org.projectlombok:lombok:1.18.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+}
